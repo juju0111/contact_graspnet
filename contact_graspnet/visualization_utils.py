@@ -51,7 +51,9 @@ def show_image(rgb, segmap):
     """
     plt.figure()
     figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
+    # figManager.window.showMaximized()
+    # figManager.frame.Maximize(True)
+    # figManager.resize(*figManager.window.maxsize())
     
     plt.ion()
     plt.show()
