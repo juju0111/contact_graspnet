@@ -80,6 +80,8 @@ def inference(global_config, checkpoint_dir, input_paths, K=None, local_regions=
         show_image(rgb, segmap)
         visualize_grasps(pc_full, pred_grasps_cam, scores, plot_opencv_cam=True, pc_colors=pc_colors)
         
+        break
+
     if not glob.glob(input_paths):
         print('No files found: ', input_paths)
         
@@ -100,11 +102,18 @@ if __name__ == "__main__":
     FLAGS = parser.parse_args()
 
     global_config = config_utils.load_config(FLAGS.ckpt_dir, batch_size=FLAGS.forward_passes, arg_configs=FLAGS.arg_configs)
-    
+    # print("configs : ",FLAGS.filter_grasps, FLAGS.local_regions)
     print(str(global_config))
     print('pid: %s'%(str(os.getpid())))
 
-    inference(global_config, FLAGS.ckpt_dir, FLAGS.np_path if not FLAGS.png_path else FLAGS.png_path, z_range=eval(str(FLAGS.z_range)),
-                K=FLAGS.K, local_regions=FLAGS.local_regions, filter_grasps=FLAGS.filter_grasps, segmap_id=FLAGS.segmap_id, 
-                forward_passes=FLAGS.forward_passes, skip_border_objects=FLAGS.skip_border_objects)
+    inference(global_config = global_config, 
+              checkpoint_dir = FLAGS.ckpt_dir,
+              input_paths = FLAGS.np_path if not FLAGS.png_path else FLAGS.png_path, 
+              z_range=eval(str(FLAGS.z_range)),
+              K=FLAGS.K, 
+              local_regions=FLAGS.local_regions, 
+              filter_grasps=FLAGS.filter_grasps, 
+              segmap_id=FLAGS.segmap_id, 
+              forward_passes=FLAGS.forward_passes, 
+              skip_border_objects=FLAGS.skip_border_objects)
 
