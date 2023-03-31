@@ -4,3 +4,5 @@ checkpoints/*
 **/*.pyc
 **/__pycache__
 .vscode
+acronym/*
+
