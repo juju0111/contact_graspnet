@@ -202,6 +202,7 @@ def regularize_pc_point_count(pc, npoints, use_farthest_point=False):
         if use_farthest_point:
             _, center_indexes = farthest_points(pc, npoints, distance_by_translation_point, return_center_indexes=True)
         else:
+            print("Random sample points ")
             center_indexes = np.random.choice(range(pc.shape[0]), size=npoints, replace=False)
         pc = pc[center_indexes, :]
     else:

@@ -200,7 +200,7 @@ class GraspEstimator:
 
         # Run model inference
         pred_grasps_cam, pred_scores, pred_points, offset_pred = sess.run(self.inference_ops, feed_dict=feed_dict)
-
+        
         pred_grasps_cam = pred_grasps_cam.reshape(-1, *pred_grasps_cam.shape[-2:])
         pred_points = pred_points.reshape(-1, pred_points.shape[-1])
         pred_scores = pred_scores.reshape(-1)
