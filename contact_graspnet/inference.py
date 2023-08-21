@@ -56,9 +56,16 @@ def inference(
     saver = tf.train.Saver(save_relative_paths=True)
 
     # Create a session
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
-    config.allow_soft_placement = True
+    
+    config = tf.compat.v1.ConfigProto(
+        gpu_options = tf.compat.v1.GPUOptions(
+            per_process_gpu_memory_fracation=0.5
+        )
+    )
+    # config = tf.ConfigProto()
+    # config.gpu_options.allow_growth = True
+    # config.allow_soft_placement = True
+    
     sess = tf.Session(config=config)
 
     # Load weights

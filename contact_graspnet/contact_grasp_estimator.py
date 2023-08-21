@@ -49,7 +49,7 @@ class GraspEstimator:
 
         # revised for jupyter notebook
         try:
-            os.chdir("/home/juju/contact_graspnet/contact_graspnet/")
+            os.chdir(os.path.expanduser('~') +"/contact_graspnet/contact_graspnet/")
             self._model_func = importlib.import_module(
                 self._contact_grasp_cfg["MODEL"]["model"] + ".contact_graspnet"
             )
